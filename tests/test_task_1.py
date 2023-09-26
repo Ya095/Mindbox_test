@@ -61,20 +61,25 @@ def test_is_right_triangle(side1, side2, side3, result):
 # calculate_all_figures_area
 # ---------------------------
 @pytest.mark.parametrize("args_result", [
-    ((1,), 3.141592653589793),
-    ((7,24,25), 84.0),
-])
-def test_calculate_all_figures_area(args_result):
-    args, result = args_result
-    assert calculate_all_figures_area(*args) == result
-
-
-@pytest.mark.parametrize("args_result", [
     ((1,3), NotImplementedError),
     ((7,24,25,8), NotImplementedError),
+    ((0,), ValueError),
+    ((-1,), ValueError),
+    (("r"), TypeError),
+    ((1,4,14), ValueError),
+    (("e",3,4), TypeError),
+    ((0,2,3), ValueError),
 ])
 def test_calculate_all_figures_area_errors(args_result):
     args, exception = args_result
     with pytest.raises(exception):
         calculate_all_figures_area(*args)
 
+
+@pytest.mark.parametrize("args_result", [
+    ((1,), 3.141592653589793),
+    ((7,24,25), 84.0),
+])
+def test_calculate_all_figures_area(args_result):
+    args, result = args_result
+    assert calculate_all_figures_area(*args) == result
