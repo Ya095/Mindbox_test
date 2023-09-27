@@ -79,6 +79,3 @@ def calculate_all_figures_area(*args):
     else:
         raise NotImplementedError(f"Метод расчета площади для {len(args)} аргументов не реализован!")
 
-
-calk = Circle(1)
-print(calk.)
