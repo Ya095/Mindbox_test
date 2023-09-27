@@ -10,6 +10,8 @@ class Figure(ABC):
     def calculate_area(self, *args, **kwargs):
         pass
 
+
+class Utils:
     @staticmethod
     def _check_length(*args):
         """ Проверка введенных размеров для фигур """
@@ -21,7 +23,7 @@ class Figure(ABC):
                 raise ValueError("Размеры должны быть положительными числами > 0.")
 
 
-class Circle(Figure):
+class Circle(Figure, Utils):
     def __init__(self, radius):
         self._check_length(radius)
         self.radius = radius
@@ -32,7 +34,7 @@ class Circle(Figure):
         return math.pi * (self.radius ** 2)
 
 
-class Triangle(Figure):
+class Triangle(Figure, Utils):
     def __init__(self, side1, side2, side3):
         self._check_length(side1, side2, side3)
         self.__is_triangle(side1, side2, side3)
